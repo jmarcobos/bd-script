@@ -21,13 +21,13 @@ CREATE TABLE `u_roles` (
 
 INSERT INTO u_roles (rol, descripcion) 
 VALUES 
-	('ADMIN', 'Usuario que administra la aplicación.'), 
-	('USUARIO', 'Usuario que explota la aplicación.');
+	('ADMIN', 'Usuario que administra la aplicaciï¿½n.'), 
+	('USUARIO', 'Usuario que explota la aplicaciï¿½n.');
 
 CREATE TABLE `u_usuarios` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_rol` int(11) NOT NULL,
-  `login` varchar(30) NOT NULL,
+  `email` varchar(50) NOT NULL,
   `password` varchar(30) NOT NULL,
   `created_date` datetime NOT NULL,
   `modified_date` datetime NOT NULL,
@@ -36,10 +36,10 @@ CREATE TABLE `u_usuarios` (
   CONSTRAINT `u_usuarios_roles_fk` FOREIGN KEY (`id_rol`) REFERENCES `u_roles` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
-INSERT INTO u_usuarios (id_rol, login, password, created_date, modified_date, last_login) 
+INSERT INTO u_usuarios (id_rol, email, password, created_date, modified_date, last_login) 
 values
-	(1, 'j.marin', 'abc01234', '2019-02-27 19:19:46.000', '2019-02-27 19:19:46.000', '2019-02-27 19:19:46.000'),
-	(2, 'haraceli', 'abc01234', '2019-02-27 19:19:46.000', '2019-02-27 19:19:46.000', '2019-02-27 19:19:46.000');
+	(1, 'jmarin@gmail.com', 'abc01234', '2019-02-27 19:19:46.000', '2019-02-27 19:19:46.000', '2019-02-27 19:19:46.000'),
+	(2, 'haraceli@gmail.com', 'abc01234', '2019-02-27 19:19:46.000', '2019-02-27 19:19:46.000', '2019-02-27 19:19:46.000');
 
 CREATE TABLE `u_datos_personales` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -52,17 +52,16 @@ CREATE TABLE `u_datos_personales` (
   `cod_postal` varchar(30) DEFAULT NULL,
   `provincia` varchar(30) DEFAULT NULL,
   `telefono` varchar(30) DEFAULT NULL,
-  `email` varchar(30) DEFAULT NULL,
   `created_date` datetime NOT NULL,
   `modified_date` datetime NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `u_datos_personales_usuarios_fk` FOREIGN KEY (`id_usuario`) REFERENCES `u_usuarios` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
-INSERT INTO u_datos_personales (id_usuario, nombre, apellido1, apellido2, direccion, poblacion, cod_postal, provincia, telefono, email, created_date, modified_date) 
+INSERT INTO u_datos_personales (id_usuario, nombre, apellido1, apellido2, direccion, poblacion, cod_postal, provincia, telefono, created_date, modified_date) 
 VALUES 
-	(1, 'Javier', 'Marín', 'Cobos', 'C/ Espronceda nº 70', 'Elche', '03204', 'Alicante', '603031703', 'j.marin@umh.es', '2019-02-27 21:19:46.000', '2019-02-27 21:19:46.000'),
-	(2, 'Héctor', 'Araceli', 'Carbonell', 'C/ Villena nº 89', 'Elche', '03204', 'Alicante', '600300800', 'haraceli@umh.es', '2019-02-27 21:19:46.000', '2019-02-27 21:19:46.000');
+	(1, 'Javier', 'Marï¿½n', 'Cobos', 'C/ Espronceda nï¿½ 70', 'Elche', '03204', 'Alicante', '603031703', '2019-02-27 21:19:46.000', '2019-02-27 21:19:46.000'),
+	(2, 'Hï¿½ctor', 'Araceli', 'Carbonell', 'C/ Villena nï¿½ 89', 'Elche', '03204', 'Alicante', '600300800', '2019-02-27 21:19:46.000', '2019-02-27 21:19:46.000');
 
 CREATE TABLE `m_paises` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -76,9 +75,9 @@ CREATE TABLE `m_paises` (
 
 INSERT INTO m_paises (cod, nombre, descripcion, created_date, modified_date)
 VALUES
-	('ESP', 'España', 'País del sur de Europa muy soleado.', '2019-02-27 21:47:46.000', '2019-02-27 21:47:46.000'),
-	('FRA', 'Francia', 'País del sur de Europa muy lleno de franceses.', '2019-02-27 21:47:46.000', '2019-02-27 21:47:46.000'),
-	('EEUU', 'Estados Unidos', 'País del norte de América llena de capitalismo.', '2019-02-27 21:47:46.000', '2019-02-27 21:47:46.000');
+	('ESP', 'Espaï¿½a', 'Paï¿½s del sur de Europa muy soleado.', '2019-02-27 21:47:46.000', '2019-02-27 21:47:46.000'),
+	('FRA', 'Francia', 'Paï¿½s del sur de Europa muy lleno de franceses.', '2019-02-27 21:47:46.000', '2019-02-27 21:47:46.000'),
+	('EEUU', 'Estados Unidos', 'Paï¿½s del norte de Amï¿½rica llena de capitalismo.', '2019-02-27 21:47:46.000', '2019-02-27 21:47:46.000');
 
 CREATE TABLE `m_ciudades` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -93,9 +92,9 @@ CREATE TABLE `m_ciudades` (
 
 INSERT INTO m_ciudades (id_pais, nombre, descripcion, created_date, modified_date)
 VALUES
-	(1, 'Madrid', 'Ciudad que es capital de España.', '2019-02-27 21:47:46.000', '2019-02-27 21:47:46.000'),
-	(2, 'París', 'Ciudad que es capital de Francia.', '2019-02-27 21:47:46.000', '2019-02-27 21:47:46.000'),
-	(3, 'Nueva York', 'Quizás sea la ciudad más importante de Estados Unidos.', '2019-02-27 21:47:46.000', '2019-02-27 21:47:46.000');
+	(1, 'Madrid', 'Ciudad que es capital de Espaï¿½a.', '2019-02-27 21:47:46.000', '2019-02-27 21:47:46.000'),
+	(2, 'Parï¿½s', 'Ciudad que es capital de Francia.', '2019-02-27 21:47:46.000', '2019-02-27 21:47:46.000'),
+	(3, 'Nueva York', 'Quizï¿½s sea la ciudad mï¿½s importante de Estados Unidos.', '2019-02-27 21:47:46.000', '2019-02-27 21:47:46.000');
 
 CREATE TABLE `n_viajes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -114,7 +113,7 @@ CREATE TABLE `n_viajes` (
 INSERT INTO n_viajes (cod, titulo, subtitulo, cuerpo, inicio, fin, precio, created_date, modified_date)
 VALUES
 	('9FX78', 'Viaje a EEUU.', 'Viaje a Nueva York para verano.', 'Se buscan persona agradable y con buen rollo para hacer un viaje a Nueva York en las vacaciones de verano.', '2019-08-10 00:00:00.000', '2019-08-18 00:00:00.000', '1400.00', '2019-02-27 21:47:46.000', '2019-02-27 21:47:46.000'),
-	('9FX79', 'Viaje a París.', 'Viaje a París para Semana Santa.', 'Se buscan persona agradable y con buen rollo para hacer un viaje a París en las vacaciones de Semana Santa.', '2019-04-19 00:00:00.000', '2019-04-24 00:00:00.000', '800.00', '2019-02-27 21:47:46.000', '2019-02-27 21:47:46.000'),
+	('9FX79', 'Viaje a Parï¿½s.', 'Viaje a Parï¿½s para Semana Santa.', 'Se buscan persona agradable y con buen rollo para hacer un viaje a Parï¿½s en las vacaciones de Semana Santa.', '2019-04-19 00:00:00.000', '2019-04-24 00:00:00.000', '800.00', '2019-02-27 21:47:46.000', '2019-02-27 21:47:46.000'),
 	('9FX80', 'Viaje a Madrid.', 'Viaje a Madrid para el puente de Octubre.', 'Se buscan persona agradable y con buen rollo para hacer un viaje a Madrid en el puente de Octubre.', '2019-10-08 00:00:00.000', '2019-10-12 00:00:00.000', '520.00', '2019-02-27 21:47:46.000', '2019-02-27 21:47:46.000');
 
 CREATE TABLE `n_viajes_historico` (
@@ -134,7 +133,7 @@ CREATE TABLE `n_viajes_historico` (
 INSERT INTO n_viajes_historico (cod, titulo, subtitulo, cuerpo, inicio, fin, precio, created_date, modified_date)
 VALUES
 	('9FX60', 'Viaje a EEUU.', 'Viaje a Nueva York para verano.', 'Se buscan persona agradable y con buen rollo para hacer un viaje a Nueva York en las vacaciones de verano.', '2019-08-10 00:00:00.000', '2019-08-18 00:00:00.000', '1400.00', '2019-02-27 21:47:46.000', '2019-02-27 21:47:46.000'),
-	('9FX61', 'Viaje a París.', 'Viaje a París para Semana Santa.', 'Se buscan persona agradable y con buen rollo para hacer un viaje a París en las vacaciones de Semana Santa.', '2019-04-19 00:00:00.000', '2019-04-24 00:00:00.000', '800.00', '2019-02-27 21:47:46.000', '2019-02-27 21:47:46.000'),
+	('9FX61', 'Viaje a Parï¿½s.', 'Viaje a Parï¿½s para Semana Santa.', 'Se buscan persona agradable y con buen rollo para hacer un viaje a Parï¿½s en las vacaciones de Semana Santa.', '2019-04-19 00:00:00.000', '2019-04-24 00:00:00.000', '800.00', '2019-02-27 21:47:46.000', '2019-02-27 21:47:46.000'),
 	('9FX62', 'Viaje a Madrid.', 'Viaje a Madrid para el puente de Octubre.', 'Se buscan persona agradable y con buen rollo para hacer un viaje a Madrid en el puente de Octubre.', '2019-10-08 00:00:00.000', '2019-10-12 00:00:00.000', '520.00', '2019-02-27 21:47:46.000', '2019-02-27 21:47:46.000');
 	
 CREATE TABLE `n_viajes_destinos` (
@@ -170,8 +169,8 @@ CREATE TABLE `n_puntuaciones_viajes` (
 INSERT INTO n_puntuaciones_viajes (id_viaje, puntuacion, comentario, created_data, modified_date)
 VALUES 
 	(1, 4, 'El viaje a sido agradable.', '2019-02-27 21:47:46.000', '2019-02-27 21:47:46.000'),
-	(2, 5, 'El viaje ha estado bien pero podría haber sido mejor.', '2019-02-27 21:47:46.000', '2019-02-27 21:47:46.000'),
-	(3, 3, 'El viaje ha sido basura cósmica.', '2019-02-27 21:47:46.000', '2019-02-27 21:47:46.000');
+	(2, 5, 'El viaje ha estado bien pero podrï¿½a haber sido mejor.', '2019-02-27 21:47:46.000', '2019-02-27 21:47:46.000'),
+	(3, 3, 'El viaje ha sido basura cï¿½smica.', '2019-02-27 21:47:46.000', '2019-02-27 21:47:46.000');
 
 CREATE TABLE `n_puntuaciones_usuarios` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -186,12 +185,13 @@ CREATE TABLE `n_puntuaciones_usuarios` (
 
 INSERT INTO n_puntuaciones_viajes (id_viaje, puntuacion, comentario, created_data, modified_date)
 VALUES 
-	(1, 5, 'Es una persona simpática y agradable. Perfecto como compañero de viaje.', '2019-02-27 21:47:46.000', '2019-02-27 21:47:46.000');
+	(1, 5, 'Es una persona simpï¿½tica y agradable. Perfecto como compaï¿½ero de viaje.', '2019-02-27 21:47:46.000', '2019-02-27 21:47:46.000');
 
 CREATE TABLE `n_viajes_usuarios` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_usuario` int(11) NOT NULL,
   `id_viaje` int(11) NOT NULL,
+  `creador` tinyint(1) NOT NULL,
   `created_data` datetime NOT NULL,
   `modified_date` datetime NOT NULL,
   PRIMARY KEY (`id`),
@@ -199,7 +199,25 @@ CREATE TABLE `n_viajes_usuarios` (
   CONSTRAINT `n_viajes_usuarios_viaje_fk` FOREIGN KEY (`id_viaje`) REFERENCES `n_viajes` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
-INSERT INTO n_viajes_usuarios (id_usuario, id_viaje, created_data, modified_date)
+INSERT INTO n_viajes_usuarios (id_usuario, id_viaje, creador, created_data, modified_date)
+VALUES 
+	(1, 1, 1, '2019-02-27 21:47:46.000', '2019-02-27 21:47:46.000'),
+	(2, 2, 1, '2019-02-27 21:47:46.000', '2019-02-27 21:47:46.000'),
+	(1, 3, 1, '2019-02-27 21:47:46.000', '2019-02-27 21:47:46.000'),
+	(2, 3, 0, '2019-02-27 21:47:46.000', '2019-02-27 21:47:46.000');
+	
+CREATE TABLE `n_viajes_historico_usuarios` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_usuario` int(11) NOT NULL,
+  `id_viaje_historico` int(11) NOT NULL,
+  `created_data` datetime NOT NULL,
+  `modified_date` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `n_viajes_hist_usuarios_usuario_fk` FOREIGN KEY (`id_usuario`) REFERENCES `u_usuarios` (`id`),
+  CONSTRAINT `n_viajes_hist_usuarios_viaje_fk` FOREIGN KEY (`id_viaje_historico`) REFERENCES `n_viajes_historico` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+INSERT INTO n_viajes_historico_usuarios (id_usuario, id_viaje_historico, created_data, modified_date)
 VALUES 
 	(1, 1, '2019-02-27 21:47:46.000', '2019-02-27 21:47:46.000'),
 	(2, 2, '2019-02-27 21:47:46.000', '2019-02-27 21:47:46.000'),
@@ -231,11 +249,11 @@ CREATE TABLE `c_etiquetas` (
 
 INSERT INTO c_etiquetas (id_componente, nombre, castellano, ingles) 
 VALUES 
-	(1, 'titulo', 'Título de la aplicación.', 'Title of the application.'), 
-	(1, 'subtitulo', 'Subtítulo de la aplicación.', 'Subtitle of the application.'),
-	(1, 'cuerpo', 'Cuerpo de la pantalla principal de la aplicación.', 'Body of the main screen of the application.'),
+	(1, 'titulo', 'TÃ­tulo de la aplicaciÃ³n.', 'Title of the application.'), 
+	(1, 'subtitulo', 'SubtÃ­tulo de la aplicaciÃ³n.', 'Subtitle of the application.'),
+	(1, 'cuerpo', 'Cuerpo de la pantalla principal de la aplicaciï¿½n.', 'Body of the main screen of the application.'),
 	(2, 'username', 'Nombre de usuario', 'Username'),
-	(2, 'password', 'Contraseña', 'Password'),
+	(2, 'password', 'ContraseÃ±a', 'Password'),
 	(4, 'privacidad', 'Privacidad', 'Privacity'),
 	(4, 'about', 'Sobre nosotros', 'About us'),
 	(4, 'contacto', 'Contacto', 'Contact'),
